@@ -10,49 +10,34 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.studentinformationsystem.data.ui.HomeScreen
+import com.example.studentinformationsystem.data.ui.NotificationsScreen
+import com.example.studentinformationsystem.data.viewmodels.NotificationViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "home") {
+                composable("home") {
+                    HomeScreen(navController)
+                }
+                composable("notifications") {
+                    NotificationsScreen(navController)
+                }
 
-// Call the HomeScreen composable with navigation actions
-            HomeScreen(
-                onNavigateToNotifications = { navigateToNotifications() },
-                onNavigateToColleagues = { navigateToColleagues() },
-                onNavigateToCoursesGrades = { navigateToCoursesGrades() },
-                onNavigateToProfessors = { navigateToProfessors() }
-            )
-
+            }
         }
     }
-}
-
-fun navigateToNotifications() {
-    // Navigate to the Notifications screen
-}
-
-fun navigateToColleagues() {
-    // Navigate to the Colleagues screen
-}
-
-fun navigateToCoursesGrades() {
-    // Navigate to the Courses/Grades screen
-}
-
-fun navigateToProfessors() {
-    // Navigate to the Professors screen
 }
 
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    HomeScreen(
-        onNavigateToNotifications = { navigateToNotifications() },
-        onNavigateToColleagues = { navigateToColleagues() },
-        onNavigateToCoursesGrades = { navigateToCoursesGrades() },
-        onNavigateToProfessors = { navigateToProfessors() }
-    )
+
 }

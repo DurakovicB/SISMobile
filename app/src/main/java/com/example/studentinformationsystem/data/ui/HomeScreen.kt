@@ -17,10 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: () -> Unit, onNavigateToCoursesGrades: () -> Unit, onNavigateToProfessors: () -> Unit) {
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -36,7 +38,7 @@ fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: ()
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(
-                    onClick = { onNavigateToNotifications() },
+                    onClick = {  navController.navigate("notifications")},
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth()
@@ -51,7 +53,7 @@ fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: ()
                 }
 
                 Button(
-                    onClick = { onNavigateToColleagues() },
+                    onClick = { navController.navigate("notifications") },
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth()
@@ -66,7 +68,7 @@ fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: ()
                 }
 
                 Button(
-                    onClick = { onNavigateToCoursesGrades() },
+                    onClick = { navController.navigate("notifications") },
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth()
@@ -81,7 +83,7 @@ fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: ()
                 }
 
                 Button(
-                    onClick = { onNavigateToProfessors() },
+                    onClick = { navController.navigate("notifications") },
                     modifier = Modifier
                         .padding(8.dp)
                         .fillMaxWidth()
@@ -101,28 +103,8 @@ fun HomeScreen(onNavigateToNotifications: () -> Unit, onNavigateToColleagues: ()
 @Composable
 @Preview
 fun HomePreview(){
-    // Define navigation actions
-    fun navigateToNotifications() {
-        // Navigate to the Notifications screen
-    }
 
-    fun navigateToColleagues() {
-        // Navigate to the Colleagues screen
-    }
 
-    fun navigateToCoursesGrades() {
-        // Navigate to the Courses/Grades screen
-    }
-
-    fun navigateToProfessors() {
-        // Navigate to the Professors screen
-    }
-
-// Call the HomeScreen composable with navigation actions
-    HomeScreen(
-        onNavigateToNotifications = { navigateToNotifications() },
-        onNavigateToColleagues = { navigateToColleagues() },
-        onNavigateToCoursesGrades = { navigateToCoursesGrades() },
-        onNavigateToProfessors = { navigateToProfessors() }
-    )
 }
+
+

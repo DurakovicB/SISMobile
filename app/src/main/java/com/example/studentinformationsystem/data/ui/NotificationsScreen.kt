@@ -7,13 +7,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.studentinformationsystem.data.classes.Notification
 import com.example.studentinformationsystem.data.dao.NotificationDao
 import com.example.studentinformationsystem.data.viewmodels.NotificationViewModel
 
+import androidx.compose.runtime.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+
+
 @Composable
-fun NotificationsScreen(viewModel: NotificationViewModel) {
+fun NotificationsScreen(navController: NavController) {
+    val viewModel: NotificationViewModel = viewModel(factory = NotificationViewModel.factory)
+
     val notifications = viewModel.selectAll()
 
     LazyColumn {
@@ -27,9 +33,6 @@ fun NotificationsScreen(viewModel: NotificationViewModel) {
 
 @Composable
 @Preview
-fun NotifPreview()
-{
-// Call the NotificationsScreen composable
-    val viewModel: NotificationViewModel = viewModel()
-    NotificationsScreen(viewModel = viewModel)
+fun NotifPreview() {
+
 }
