@@ -28,7 +28,7 @@ import com.example.studentinformationsystem.data.dao.UserDao
         StudentCourses::class,
         User::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(DateConverter::class) // Add the TypeConverter here

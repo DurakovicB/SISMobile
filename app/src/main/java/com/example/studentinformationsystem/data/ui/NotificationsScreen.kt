@@ -58,7 +58,7 @@ fun NotificationsScreen(navController: NavController) {
         },
         content = {
             LazyColumn(
-                modifier = Modifier.padding(top = AppBarHeight),
+                modifier = Modifier.padding(top = 56.dp),
                 contentPadding = PaddingValues(vertical = 16.dp, horizontal = 16.dp)
             ) {
                 items(notifications) { notification ->

@@ -10,7 +10,7 @@ data class Professor(
     val id: Int,
     val email: String,
     val fullName: String,
-    val phone: String?,
+    val phone: String,
     val dateOfBirth: Date,
-    val gender: String?
+    val gender: String
 )
