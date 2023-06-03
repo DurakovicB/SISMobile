@@ -17,7 +17,7 @@ import com.example.studentinformationsystem.data.classes.StudentCourses
 import com.example.studentinformationsystem.data.dao.StudentCoursesDao
 import com.example.studentinformationsystem.data.dao.StudentDao
 import com.example.studentinformationsystem.data.classes.User
-import com.example.studentinformationsystem.data.UserDao
+import com.example.studentinformationsystem.data.dao.UserDao
 
 @Database(
     entities = [
@@ -28,7 +28,7 @@ import com.example.studentinformationsystem.data.UserDao
         StudentCourses::class,
         User::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(DateConverter::class) // Add the TypeConverter here
@@ -52,12 +52,13 @@ abstract class AppDatabase : RoomDatabase() {
                     "app_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .createFromAsset("systeminformationsystem.sql")
                     .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
+
     }
-}
+
+  }

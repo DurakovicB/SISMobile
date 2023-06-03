@@ -1,13 +1,23 @@
 package com.example.studentinformationsystem.data.classes
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "course")
 data class Course(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
     val id: Int,
+
+    @ColumnInfo(name = "name")
     val name: String,
-    val description: String?,
-    val professor_id: Int
+
+    @ColumnInfo(name = "description")
+    val description: String,
+
+    @ColumnInfo(name = "professor_id")
+    val professorId: Int
 )
+

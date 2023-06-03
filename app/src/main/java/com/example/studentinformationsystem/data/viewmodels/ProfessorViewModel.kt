@@ -14,6 +14,7 @@ class ProfessorViewModel(private val professorDao: ProfessorDao) : ViewModel() {
     fun getProfessorsByStudentId(studentId: Int) = professorDao.getProfessorsByStudentId(studentId)
 
     fun getProfessorById(professorId: Int) = professorDao.getProfessorById(professorId)
+    fun selectAll() = professorDao.selectAll()
 
     fun insertProfessor(professor: Professor) {
         viewModelScope.launch {

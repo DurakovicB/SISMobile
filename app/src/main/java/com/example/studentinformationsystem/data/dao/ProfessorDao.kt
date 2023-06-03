@@ -4,11 +4,15 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.studentinformationsystem.data.classes.Notification
 import com.example.studentinformationsystem.data.classes.Professor
 
 
 @Dao
 interface ProfessorDao {
+
+    @Query ("Select * from professor")
+    fun selectAll():List<Professor>
     @Insert
     fun insertProfessor(professor: Professor)
 

@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 
 class CourseViewModel(private val courseDao: CourseDao) : ViewModel() {
 
+    fun selectAll() = courseDao.selectAll()
+
     fun getCourseById(courseId: Int) = courseDao.getCourseById(courseId)
 
     fun getCoursesByProfessorId(professorId: Int) = courseDao.getCoursesByProfessorId(professorId)

@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
 
+    fun selectAll() = studentDao.selectAll()
+
     fun getColleagues(studentId: Int) = studentDao.selectColleagues(studentId)
 
     fun getStudentById(studentId: Int) = studentDao.getStudentById(studentId)

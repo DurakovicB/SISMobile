@@ -1,4 +1,4 @@
-package com.example.studentinformationsystem.data
+package com.example.studentinformationsystem.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -10,6 +10,10 @@ import com.example.studentinformationsystem.data.classes.User
 
 @Dao
 interface UserDao {
+
+
+    @Query ("Select * from users")
+    fun selectAll():List<User>
     @Insert
     fun insertUser(user: User)
 

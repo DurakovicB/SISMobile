@@ -9,7 +9,7 @@ data class StudentCourses(
     val id: Int,
     val student_id: Int,
     val course_id: Int,
-    val percentageTotalAmount: Int?,
-    val percentageAcquired: Int?,
-    val gradeTitle: String?
+    val percentageTotalAmount: Int,
+    val percentageAcquired: Int,
+    val gradeTitle: String
 )

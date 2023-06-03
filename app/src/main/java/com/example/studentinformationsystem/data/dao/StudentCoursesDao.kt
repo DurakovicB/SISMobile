@@ -5,11 +5,17 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.studentinformationsystem.data.classes.Notification
 import com.example.studentinformationsystem.data.classes.StudentCourses
 
 
 @Dao
 interface StudentCoursesDao {
+
+
+    @Query ("Select * from student_courses")
+    fun selectAll():List<StudentCourses>
+
     @Insert
     fun insertStudentCourses(studentCourses: StudentCourses)
 

@@ -8,9 +8,9 @@ import java.util.Date
 data class Professor(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val email: String?,
-    val fullName: String?,
+    val email: String,
+    val fullName: String,
     val phone: String?,
-    val dateOfBirth: Date?,
+    val dateOfBirth: Date,
     val gender: String?
 )

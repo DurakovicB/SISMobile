@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.studentinformationsystem.data.SISApplication
-import com.example.studentinformationsystem.data.UserDao
+import com.example.studentinformationsystem.data.dao.UserDao
 import com.example.studentinformationsystem.data.classes.User
 import kotlinx.coroutines.launch
 
@@ -14,6 +14,9 @@ class UserViewModel(private val userDao: UserDao) : ViewModel() {
     fun getUserById(userId: Int) = userDao.getUserById(userId)
 
     fun getUserByEmail(email: String) = userDao.getUserByEmail(email)
+
+    fun selectAll() = userDao.selectAll()
+
 
     fun insertUser(user: User) {
         viewModelScope.launch {
