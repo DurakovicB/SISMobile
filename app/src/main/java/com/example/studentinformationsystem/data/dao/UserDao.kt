@@ -28,4 +28,8 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE email = :email")
     fun getUserByEmail(email: String): User?
+
+    @Query("SELECT COUNT(*) FROM users WHERE email = :email AND password = :password")
+    fun getUserCountByEmailAndPassword(email: String, password: String): Int
+
 }

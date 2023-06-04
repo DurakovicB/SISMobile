@@ -44,6 +44,8 @@ fun HomeScreen(navController: NavController) {
 //    insertCourses()
 //    insertStudents()
 //    insertStudentCourses()
+//    insertUsers()
+
     Scaffold(
         topBar = {
             TopAppBar(

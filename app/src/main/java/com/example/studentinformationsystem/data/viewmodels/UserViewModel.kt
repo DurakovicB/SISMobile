@@ -5,13 +5,18 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.studentinformationsystem.data.SISApplication
-import com.example.studentinformationsystem.data.dao.UserDao
 import com.example.studentinformationsystem.data.classes.User
+import com.example.studentinformationsystem.data.dao.UserDao
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val userDao: UserDao) : ViewModel() {
 
     fun getUserById(userId: Int) = userDao.getUserById(userId)
+
+     fun checkUserExistence(email: String, password: String): Boolean {
+        val userCount = userDao.getUserCountByEmailAndPassword(email, password)
+        return userCount > 0
+    }
 
     fun getUserByEmail(email: String) = userDao.getUserByEmail(email)
 
