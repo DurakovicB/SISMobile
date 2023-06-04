@@ -18,6 +18,7 @@ class CourseViewModel(private val courseDao: CourseDao) : ViewModel() {
 
     fun getCoursesByProfessorId(professorId: Int) = courseDao.getCoursesByProfessorId(professorId)
 
+    fun getCoursesByStudentId(studentId:Int)=courseDao.getCoursesForStudent(studentId)
     fun insertCourse(course: Course) {
         viewModelScope.launch {
             courseDao.insertCourse(course)

@@ -30,4 +30,6 @@ interface StudentCoursesDao {
 
     @Query("SELECT * FROM student_courses WHERE student_id = :studentId AND course_id = :courseId")
     fun getGradesByStudentIdAndCourseId(studentId: Int, courseId: Int): List<StudentCourses>
+
+
 }

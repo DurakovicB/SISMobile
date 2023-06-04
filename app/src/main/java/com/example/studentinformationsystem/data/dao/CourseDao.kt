@@ -27,4 +27,7 @@ interface CourseDao {
 
     @Query("SELECT * FROM course WHERE professor_id = :professorId")
     fun getCoursesByProfessorId(professorId: Int): List<Course>
+
+    @Query("Select * from student_courses sc join course c on sc.course_id=c.id where student_id = :studentId")
+    fun getCoursesForStudent(studentId:Int):List<Course>
 }
