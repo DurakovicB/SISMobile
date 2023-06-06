@@ -2,6 +2,7 @@ package com.example.studentinformationsystem.data.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -25,9 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import com.example.studentinformationsystem.R
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,9 +34,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.studentinformationsystem.R
 import com.example.studentinformationsystem.data.classes.Course
 import com.example.studentinformationsystem.data.viewmodels.CourseViewModel
-import com.example.studentinformationsystem.data.viewmodels.ProfessorViewModel
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -68,9 +65,9 @@ fun CoursesScreen(navController: NavController) {
                 itemsIndexed(courses) { index, course ->
                     if (index % 2 == 0) {
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            CourseCard(course, imageSize = 150.dp)
+                            CourseCard(course, imageSize = 150.dp, {navigateToCourseDetails(course.id,navController)})
                             if (index + 1 < courses.size) {
-                                CourseCard(course = courses[index + 1], imageSize = 150.dp)
+                                CourseCard(course = courses[index + 1], imageSize = 150.dp,{navigateToCourseDetails(courses[index+1].id,navController)})
                             } else {
                                 Spacer(modifier = Modifier.weight(1f))
                             }
@@ -83,11 +80,13 @@ fun CoursesScreen(navController: NavController) {
 }
 
 @Composable
-private fun CourseCard(course: Course, imageSize: Dp) {
+private fun CourseCard(course: Course, imageSize: Dp,onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .wrapContentSize()
             .padding(bottom = 15.dp)
+            .clickable(onClick = onClick)
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -106,4 +105,8 @@ private fun CourseCard(course: Course, imageSize: Dp) {
             // Add any other UI components to display course details
         }
     }
+}
+
+fun navigateToCourseDetails(id:Int, navC:NavController){
+    navC.navigate("course/${id}")
 }

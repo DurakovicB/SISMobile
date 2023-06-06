@@ -3,6 +3,7 @@ package com.example.studentinformationsystem.data.ui
 import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,13 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -32,7 +30,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -68,9 +65,11 @@ fun StudentsScreen(navController: NavController) {
                 itemsIndexed(students) { index, student ->
                     if (index % 2 == 0) {
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            StudentCard(student, imageSize=150.dp)
+                            StudentCard(student, imageSize=150.dp,
+                                { navigateToStudentDetails(student.id,navController) })
+
                             if (index + 1 < students.size) {
-                                StudentCard(student = students[index + 1], imageSize = 150.dp)
+                                StudentCard(student = students[index + 1], imageSize = 150.dp,{ navigateToStudentDetails(students[index+1].id,navController) })
 
                             } else {
                                 Spacer(modifier = Modifier.weight(1f))
@@ -83,13 +82,18 @@ fun StudentsScreen(navController: NavController) {
     )
 
 }
+fun navigateToStudentDetails(id:Int, navC:NavController){
+    navC.navigate("student/${id}")
+}
 
 @Composable
-private fun StudentCard(student: Student, imageSize: Dp) {
+private fun StudentCard(student: Student, imageSize: Dp,onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .wrapContentSize()
             .padding(bottom = 15.dp)
+            .clickable(onClick = onClick)
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

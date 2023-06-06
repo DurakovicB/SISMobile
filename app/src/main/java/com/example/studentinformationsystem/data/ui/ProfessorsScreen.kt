@@ -2,6 +2,7 @@ package com.example.studentinformationsystem.data.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -63,9 +64,9 @@ fun ProfessorsScreen(navController: NavController) {
                 itemsIndexed(professors) { index, professor ->
                     if (index % 2 == 0) {
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            ProfessorCard(professor, imageSize = 150.dp)
+                            ProfessorCard(professor, imageSize = 150.dp,navController)
                             if (index + 1 < professors.size) {
-                                ProfessorCard(professor = professors[index + 1], imageSize = 150.dp)
+                                ProfessorCard(professor = professors[index + 1], imageSize = 150.dp,navController)
                             } else {
                                 Spacer(modifier = Modifier.weight(1f))
                             }
@@ -78,11 +79,12 @@ fun ProfessorsScreen(navController: NavController) {
 }
 
 @Composable
-private fun ProfessorCard(professor: Professor, imageSize: Dp) {
+private fun ProfessorCard(professor: Professor, imageSize: Dp,navC:NavController) {
     Card(
         modifier = Modifier
             .wrapContentSize()
             .padding(bottom = 15.dp)
+            .clickable(onClick = {    navC.navigate("professor/${professor.id}")})
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -103,7 +105,7 @@ private fun ProfessorCard(professor: Professor, imageSize: Dp) {
     }
 }
 
-private fun getProfessorAvatarResource(gender: String): Int {
+ fun getProfessorAvatarResource(gender: String): Int {
     return when (gender) {
         "Male" -> R.drawable.maleprofessoravatar
         "Female" -> R.drawable.femaleprofessoravatar

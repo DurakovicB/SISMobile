@@ -8,11 +8,14 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.studentinformationsystem.data.ui.CourseDetailsScreen
 import com.example.studentinformationsystem.data.ui.CoursesScreen
 import com.example.studentinformationsystem.data.ui.HomeScreen
 import com.example.studentinformationsystem.data.ui.LoginScreen
 import com.example.studentinformationsystem.data.ui.NotificationsScreen
+import com.example.studentinformationsystem.data.ui.ProfessorDetailsScreen
 import com.example.studentinformationsystem.data.ui.ProfessorsScreen
+import com.example.studentinformationsystem.data.ui.StudentDetailScreen
 import com.example.studentinformationsystem.data.ui.StudentsScreen
 
 class MainActivity : ComponentActivity() {
@@ -43,6 +46,28 @@ class MainActivity : ComponentActivity() {
                 }
                 composable("courses") {
                     CoursesScreen(navController)
+                }
+                composable("student/{studentId}") { backStackEntry ->
+                    val studentId = backStackEntry.arguments?.getString("studentId")
+                    studentId?.let { StudentDetailScreen(studentId.toInt(), navController) }
+                }
+                composable(
+                    "course/{courseId}",
+                ) { backStackEntry ->
+                    val courseId = backStackEntry.arguments?.getString("courseId")
+                    if (courseId != null) {
+                        CourseDetailsScreen(courseId = courseId.toInt(), navController = navController)
+                    }
+                }
+                composable("professor/{professorId}") { backStackEntry ->
+                    val arguments = requireNotNull(backStackEntry.arguments)
+                    val id = arguments.getString("professorId")
+                    if (id != null) {
+                        ProfessorDetailsScreen(
+                            professorId = id.toInt(),
+                            navController = navController
+                        )
+                    }
                 }
 
             }

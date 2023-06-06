@@ -39,9 +39,10 @@ import com.example.studentinformationsystem.data.viewmodels.UserViewModel
 @Composable
 fun LoginScreen(navController: NavController) {
     val viewModel: UserViewModel = viewModel(factory = UserViewModel.factory)
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("ahmed.durakovic@gmail.com") }
+    var password by remember { mutableStateOf("123456") }
     val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -87,12 +88,12 @@ fun LoginScreen(navController: NavController) {
             ),
             visualTransformation = PasswordVisualTransformation(),
             keyboardActions = KeyboardActions(
-                onDone = { performLogin(viewModel, email, password, context,navController) }
+                onDone = { performLogin(viewModel, email, password, context, navController) }
             )
         )
 
         Button(
-            onClick = { performLogin(viewModel, email, password, context,navController) },
+            onClick = { performLogin(viewModel, email, password, context, navController) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp)
@@ -101,6 +102,7 @@ fun LoginScreen(navController: NavController) {
         }
     }
 }
+
 
 
 
